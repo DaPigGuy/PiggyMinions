@@ -14,7 +14,6 @@ use pocketmine\event\Listener;
 use pocketmine\nbt\tag\ByteArrayTag;
 use pocketmine\nbt\tag\CompoundTag;
 use pocketmine\nbt\tag\StringTag;
-use pocketmine\tile\Skull;
 
 class EventListener implements Listener
 {
@@ -36,8 +35,8 @@ class EventListener implements Listener
         $block = $event->getBlock();
         if ($block->getId() === BlockIds::MOB_HEAD_BLOCK) {
             $item = $event->getItem();
-            /** @var CompoundTag $minionInformation */
             if (($minionInformation = $item->getNamedTagEntry("MinionInformation")) !== null) {
+                /** @var CompoundTag $minionInformation */
                 if (($minionType = $minionInformation->getCompoundTag("MinionType")) !== null) {
                     if (($actionType = $minionType->getInt("ActionType")) !== null && ($targetId = $minionType->getInt("TargetID")) !== null) {
                         $skin = $player->getSkin();

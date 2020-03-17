@@ -42,7 +42,7 @@ class MinionEntity extends Human
     /** @var int */
     public $currentActionTicks = 0;
 
-    /** @var Block|Entity */
+    /** @var Block|Entity|null */
     public $target;
 
     public function __construct(Level $level, CompoundTag $nbt, ?MinionInformation $minionInformation = null)
@@ -171,6 +171,7 @@ class MinionEntity extends Human
                             case MinionType::FARMING_MINION:
                                 $this->level->setBlock($this->target->subtract(0, 1), BlockFactory::get($this->minionInformation->getType()->getTargetId() === BlockIds::NETHER_WART_PLANT ? BlockIds::SOUL_SAND : BlockIds::FARMLAND));
                             case MinionType::MINING_MINION:
+                                if (!$this->target instanceof Block) break;
                                 $this->level->setBlock($this->target, BlockFactory::get($this->target->getId() === BlockIds::AIR ? $this->minionInformation->getType()->getTargetId() : BlockIds::AIR));
                                 $drops = $this->target->getDropsForCompatibleTool(ItemFactory::get(ItemIds::AIR));
                                 if (empty($drops)) $drops = $this->target->getSilkTouchDrops(ItemFactory::get(ItemIds::AIR));
