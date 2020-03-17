@@ -1,0 +1,10 @@
+--- # Poggit-CI Manifest. Open the CI at https://poggit.pmmp.io/ci/DaPigGuy/PiggyMinions
+branches:
+- master
+projects:
+  PiggyMinions:
+    path: ""
+    libs:
+    - src: muqsit/InvMenu/InvMenu
+      version: ^3.1
+...
