@@ -10,7 +10,7 @@ use pocketmine\plugin\PluginBase;
 
 class PiggyMinions extends PluginBase
 {
-    public function onEnable()
+    public function onEnable(): void
     {
         Entity::registerEntity(MinionEntity::class, true);
 
