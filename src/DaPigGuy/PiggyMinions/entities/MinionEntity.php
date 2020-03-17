@@ -27,6 +27,7 @@ use pocketmine\nbt\tag\CompoundTag;
 use pocketmine\network\mcpe\protocol\AnimatePacket;
 use pocketmine\network\mcpe\protocol\LevelEventPacket;
 use pocketmine\Player;
+use pocketmine\utils\TextFormat;
 
 class MinionEntity extends Human
 {
@@ -61,6 +62,7 @@ class MinionEntity extends Human
             case MinionType::MINING_MINION:
                 $block = BlockFactory::get($this->minionInformation->getType()->getTargetId());
                 $tools = [
+                    BlockToolType::TYPE_NONE => ItemIds::WOODEN_PICKAXE,
                     BlockToolType::TYPE_SHOVEL => ItemIds::WOODEN_SHOVEL,
                     BlockToolType::TYPE_PICKAXE => ItemIds::WOODEN_PICKAXE,
                     BlockToolType::TYPE_AXE => ItemIds::WOODEN_AXE,
@@ -203,7 +205,7 @@ class MinionEntity extends Human
             if ($damager instanceof Player && $damager->getUniqueId()->equals($this->minionInformation->getOwner())) {
                 $menu = InvMenu::create(InvMenu::TYPE_DOUBLE_CHEST);
                 $menu->setName("Minion " . Utils::getRomanNumeral($this->minionInformation->getLevel()));
-                $menu->getInventory()->setContents(array_fill(0, 54, ItemFactory::get(ItemIds::INVISIBLE_BEDROCK)));
+                $menu->getInventory()->setContents(array_fill(0, 54, ItemFactory::get(ItemIds::INVISIBLE_BEDROCK)->setCustomName(TextFormat::ITALIC)));
                 $menu->getInventory()->setItem(48, ItemFactory::get(ItemIds::CHEST));
                 $menu->getInventory()->setItem(53, ItemFactory::get(ItemIds::BEDROCK));
                 foreach ($this->minionInformation->getInventory()->getContents(true) as $slot => $item) {
