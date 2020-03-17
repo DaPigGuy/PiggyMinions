@@ -13,6 +13,7 @@ use pocketmine\event\block\BlockPlaceEvent;
 use pocketmine\event\Listener;
 use pocketmine\nbt\tag\ByteArrayTag;
 use pocketmine\nbt\tag\CompoundTag;
+use pocketmine\nbt\tag\IntTag;
 use pocketmine\nbt\tag\StringTag;
 
 class EventListener implements Listener
@@ -35,10 +36,9 @@ class EventListener implements Listener
         $block = $event->getBlock();
         if ($block->getId() === BlockIds::MOB_HEAD_BLOCK) {
             $item = $event->getItem();
-            if (($minionInformation = $item->getNamedTagEntry("MinionInformation")) !== null) {
-                /** @var CompoundTag $minionInformation */
+            if (($minionInformation = $item->getNamedTag()->getCompoundTag("MinionInformation")) !== null) {
                 if (($minionType = $minionInformation->getCompoundTag("MinionType")) !== null) {
-                    if (($actionType = $minionType->getInt("ActionType")) !== null && ($targetId = $minionType->getInt("TargetID")) !== null) {
+                    if (($actionType = $minionType->getTag("ActionType")) instanceof IntTag && ($targetId = $minionType->getTag("TargetID")) instanceof IntTag) {
                         $skin = $player->getSkin();
 
                         $nbt = Entity::createBaseNBT($block->add(0.5, 0, 0.5));
@@ -49,7 +49,7 @@ class EventListener implements Listener
                             new StringTag("GeometryName", $skin->getGeometryName()),
                             new ByteArrayTag("GeometryData", $skin->getGeometryData())
                         ]));
-                        $nbt->setTag((new MinionInformation($player->getUniqueId(), new MinionInventory(), new MinionType($actionType, $targetId), $minionInformation->getInt("MinionLevel", 1), $minionInformation->getInt("ResourcesCollected", 0), time()))->toNBT());
+                        $nbt->setTag((new MinionInformation($player->getUniqueId(), new MinionInventory(), new MinionType($actionType->getValue(), $targetId->getValue()), $minionInformation->getInt("MinionLevel", 1), $minionInformation->getInt("ResourcesCollected", 0), time()))->toNBT());
 
                         $entity = Entity::createEntity("MinionEntity", $player->getLevel(), $nbt);
                         $entity->spawnToAll();
