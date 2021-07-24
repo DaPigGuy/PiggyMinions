@@ -1,6 +1,8 @@
 # PiggyMinions
-
 PiggyMinions is a WIP plugin implementing minions for PMMP.
+
+## ⚠️NOTICE⚠️
+This plugin is **NO LONGER IN DEVELOPMENT** and has been abandoned. **Do not expect any support.**
 
 ## Obtaining Minions
 Currently there are no built in commands for giving yourself minions. Instead, use this /give command template, with ActionType being 0 for mining or 1 for farming & target id being the block id:
@@ -13,7 +15,6 @@ Currently there are no built in commands for giving yourself minions. Instead, u
 * If you experience an unexpected non-crash behavior with PiggyMinions, click [here](https://github.com/DaPigGuy/PiggyMinions/issues/new?assignees=DaPigGuy&labels=bug&template=bug_report.md&title=).
 * If you experience a crash in PiggyMinions, click [here](https://github.com/DaPigGuy/PiggyMinions/issues/new?assignees=DaPigGuy&labels=bug&template=crash.md&title=).
 * If you would like to suggest a feature to be added to PiggyMinions, click [here](https://github.com/DaPigGuy/PiggyMinions/issues/new?assignees=DaPigGuy&labels=suggestion&template=suggestion.md&title=).
-* If you require support, please join our discord server [here](https://discord.gg/qmnDsSD).
 * Do not file any issues related to outdated API version; we will resolve such issues as soon as possible.
 * We do not support any spoons of PocketMine-MP. Anything to do with spoons (Issues or PRs) will be ignored.
   * This includes plugins that modify PocketMine-MP's behavior directly, such as TeaSpoon.
@@ -23,9 +24,6 @@ Currently there are no built in commands for giving yourself minions. Instead, u
 * We are using the following virions: [InvMenu](https://github.com/Muqsit/InvMenu).
     * **You MUST use the pre-compiled phar from [Poggit-CI](https://poggit.pmmp.io/ci/DaPigGuy/PiggyMinions/~) instead of GitHub.**
     * If you wish to run it via source, check out [DEVirion](https://github.com/poggit/devirion).
-<!--* Plugin setup/configuration information & API Documentation available at [PiggyDocs](https://piggydocs.aericio.net/PiggyMinions.html).
-* You can find a list of custom enchants at [PiggyDocs](https://piggydocs.aericio.net/PiggyMinions.html). -->
-* Check out our [Discord Server](https://discord.gg/qmnDsSD) for additional plugin support.
 
 ## License
 ```
